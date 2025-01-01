@@ -40,3 +40,10 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Deployment
+This project uses GitHub Pages for deployment. However, due to API key security:
+
+1. The live demo requires your own OpenAI API key
+2. Create a .env.local file with your key
+3. Local development only - no public API access

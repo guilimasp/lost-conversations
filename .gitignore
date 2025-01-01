@@ -8,8 +8,9 @@ package-lock.json
 .env.*.local
 
 # Build
-dist/
-dist-ssr/
+dist
+dist-ssr
+*.local
 
 # Logs
 logs
