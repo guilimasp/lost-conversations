@@ -1,4 +1,4 @@
-# Lost Conversations
+# lost-conversations
 
 A web application that simulates an iMessage interface displaying randomly generated conversation snippets. Built with Vite and OpenAI API.
 
