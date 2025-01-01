@@ -2,6 +2,8 @@
     --imessage-blue: #007AFF;
     --imessage-gray: #e9e9eb;
     --imessage-green: #34C759;
+    --status-bar-height: 44px;
+    --header-height: 60px;
 }
 
 body {
@@ -19,11 +21,13 @@ body {
 }
 
 .imessage-header {
-    padding: 10px;
-    background-color: #f7f7f7;
+    height: 70px;
+    padding: 0 12px;
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #c6c6c8;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #ddd;
 }
 
 .chat-container {
@@ -85,19 +89,50 @@ body {
 }
 
 .status-bar {
-    height: 44px;
+    height: var(--status-bar-height);
     background-color: #000;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 8px;
     position: relative;
 }
 
 .time {
+    font-size: 15px;
     font-weight: 600;
-    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+.status-icons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.signal-icon,
+.wifi-icon {
+    width: 18px;
+    height: 12px;
+    color: white;
+}
+
+.battery-container {
+    display: flex;
+    align-items: center;
+}
+
+.battery-icon {
+    width: 25px;
+    height: 12px;
+    color: white;
+    margin-left: 4px;
+}
+
+.battery-icon rect {
+    rx: 3px;
+    ry: 3px;
 }
 
 .notch {
@@ -105,7 +140,7 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 180px;
+    width: 160px;
     height: 30px;
     background-color: #000;
     border-bottom-left-radius: 18px;
@@ -117,61 +152,37 @@ body {
 }
 
 .camera {
-    width: 12px;
-    height: 12px;
-    background-color: #1a1a1a;
-    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 6px;
+    margin-right: 4px;
+    background: none;
 }
 
 .speaker {
-    width: 60px;
-    height: 6px;
-    background-color: #1a1a1a;
-    border-radius: 3px;
-}
-
-.status-icons {
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
-
-.signal, .wifi {
-    width: 18px;
-    height: 12px;
-    background-color: white;
-    clip-path: polygon(0 100%, 100% 100%, 100% 0);
-}
-
-.battery {
-    width: 25px;
-    height: 12px;
-    border: 2px solid white;
-    border-radius: 3px;
-    position: relative;
-}
-
-.battery::after {
-    content: '';
-    position: absolute;
-    right: -4px;
-    top: 3px;
-    width: 2px;
+    width: 40px;
     height: 4px;
-    background-color: white;
-    border-radius: 0 2px 2px 0;
-}
-
-.battery-level {
-    width: 80%;
-    height: 100%;
-    background-color: white;
+    background-color: #1a1a1a;
+    border-radius: 2px;
 }
 
 .contact-info {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    flex: 1;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
 }
 
 .back-button {
@@ -179,8 +190,49 @@ body {
     color: var(--imessage-blue);
 }
 
-.contact-name {
-    font-weight: 600;
+.contact-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #9E9E9E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+/* Estilo específico para o ícone de empresa */
+.business-avatar svg {
+    width: 24px;
+    height: 24px;
+}
+
+.business-avatar circle,
+.business-avatar path {
+    fill: white;
+    stroke: none;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+}
+
+.header-icons {
+    color: var(--imessage-blue);
+}
+
+.video-icon {
+    font-size: 24px;
 }
 
 @keyframes fadeIn {
@@ -232,4 +284,29 @@ body {
     to {
         transform: translate(-50%, -50%) rotate(360deg);
     }
-} 
+}
+
+.contact-name {
+    font-size: 12px;
+    font-weight: 400;
+    color: #666;
+    text-align: center;
+}
+
+/* Status bar icons */
+.sf-symbol {
+    font-size: 16px;
+    color: white;
+}
+
+.status-icons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.battery-icon {
+    position: relative;
+    width: 24px;
+    height: 12px;
+}
