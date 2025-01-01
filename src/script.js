@@ -78,23 +78,39 @@ async function generateConversation() {
 
     try {
       const response = completion.choices[0].message.content;
-      console.log("OpenAI Response:", response);
-
       const jsonResponse = JSON.parse(response);
-      console.log("Parsed JSON:", jsonResponse);
 
       if (!jsonResponse.messages || !Array.isArray(jsonResponse.messages)) {
-        console.error("Invalid response format:", jsonResponse);
+        return;
+      }
+
+      // Verifica se é uma conversa de empresa (número de 9 dígitos)
+      const isBusinessChat = /^\d{9}$/.test(jsonResponse.contact_name);
+
+      // Valida se todas as mensagens seguem o padrão correto
+      const isValidConversation = jsonResponse.messages.every((msg) => {
+        if (isBusinessChat) {
+          // Mensagens de empresa devem sempre ser recebidas (sender: 2)
+          return msg.sender === 2;
+        } else {
+          // Mensagens pessoais podem ser enviadas ou recebidas
+          return msg.sender === 1 || msg.sender === 2;
+        }
+      });
+
+      if (!isValidConversation) {
+        // Se a conversa não seguir o padrão, gera uma nova
+        generateConversation();
         return;
       }
 
       renderHeader(jsonResponse.contact_name);
       renderMessages(jsonResponse.messages);
     } catch (parseError) {
-      console.error("Error processing response:", parseError);
+      // Silently fail
     }
   } catch (error) {
-    console.error("ERRO:", error);
+    // Silently fail
   } finally {
     document.body.classList.remove("loading");
   }
@@ -104,8 +120,10 @@ function renderMessages(messages) {
   const chatContainer = document.getElementById("chatContainer");
   chatContainer.innerHTML = "";
 
-  // 30% de chance de usar verde em vez de azul para mensagens normais
-  const useGreen = Math.random() < 0.3;
+  const isBusinessChat = document.querySelector(".business-avatar") !== null;
+
+  // Só usa cores diferentes para conversas pessoais
+  const useGreen = !isBusinessChat && Math.random() < 0.3;
   const messageColor = useGreen ? "green" : "blue";
 
   let lastSender = null;
@@ -115,10 +133,9 @@ function renderMessages(messages) {
     const isNewSender = lastSender !== msg.sender;
     lastSender = msg.sender;
 
-    // Para mensagens de empresa, sempre usar received
-    const isBusinessMessage =
-      document.querySelector(".business-avatar") !== null;
-    const isSender = isBusinessMessage ? false : msg.sender === 1;
+    // Se for empresa, todas as mensagens são received
+    // Se for pessoal, segue o sender do JSON
+    const isSender = isBusinessChat ? false : msg.sender === 1;
 
     messageDiv.className = `message ${
       isSender ? `sent ${messageColor}` : "received"

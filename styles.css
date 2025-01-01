@@ -225,6 +225,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
+    padding: 8.4px 0;
 }
 
 .header-icons {
