@@ -1,0 +1,235 @@
+:root {
+    --imessage-blue: #007AFF;
+    --imessage-gray: #e9e9eb;
+    --imessage-green: #34C759;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #000;
+}
+
+.imessage-container {
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: white;
+    height: 100vh;
+}
+
+.imessage-header {
+    padding: 10px;
+    background-color: #f7f7f7;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+
+.chat-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.message {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    line-height: 1.4;
+    animation: fadeIn 0.3s ease-in-out;
+    position: relative;
+    margin: 2px 0;
+}
+
+.message-content {
+    margin-right: 36px; /* Espaço para o horário */
+}
+
+.message-time {
+    position: absolute;
+    bottom: 4px;
+    right: 12px;
+    font-size: 11px;
+    opacity: 0.5;
+    color: inherit;
+}
+
+/* Ajusta o padding do último item para acomodar o horário */
+.message:last-child .message-content {
+    margin-bottom: 0;
+}
+
+/* Reduz a margem entre mensagens do mesmo remetente */
+.message + .message {
+    margin-top: 2px;
+}
+
+.sent {
+    background-color: var(--imessage-blue);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.received {
+    background-color: var(--imessage-gray);
+    color: black;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+.status-bar {
+    height: 44px;
+    background-color: #000;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    position: relative;
+}
+
+.time {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 30px;
+    background-color: #000;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.camera {
+    width: 12px;
+    height: 12px;
+    background-color: #1a1a1a;
+    border-radius: 50%;
+}
+
+.speaker {
+    width: 60px;
+    height: 6px;
+    background-color: #1a1a1a;
+    border-radius: 3px;
+}
+
+.status-icons {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.signal, .wifi {
+    width: 18px;
+    height: 12px;
+    background-color: white;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+}
+
+.battery {
+    width: 25px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 3px;
+    position: relative;
+}
+
+.battery::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 3px;
+    width: 2px;
+    height: 4px;
+    background-color: white;
+    border-radius: 0 2px 2px 0;
+}
+
+.battery-level {
+    width: 80%;
+    height: 100%;
+    background-color: white;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-button {
+    font-size: 32px;
+    color: var(--imessage-blue);
+}
+
+.contact-name {
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sent.blue {
+    background-color: var(--imessage-blue);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.sent.green {
+    background-color: var(--imessage-green);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.loading .chat-container {
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.loading .chat-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--imessage-gray);
+    border-top-color: var(--imessage-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+} 
