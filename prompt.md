@@ -1,14 +1,18 @@
-# Conversation Generation Prompt
+# Conversation Generation System
 
-This project uses a carefully crafted prompt to generate message sequences that feel like fragments of larger narratives. The actual prompt is kept in environment variables for security, but the general approach is:
+This project uses a carefully crafted prompt system to generate realistic conversation snippets. The system is designed to create two types of content:
 
-- Generate 1-7 messages per sequence
-- Create an atmosphere of mystery and intrigue
-- Messages feel like glimpses into larger stories
-- Context remains purposefully elusive
-- Natural language with poetic undertones
-- Mix of metaphorical and mundane messages
-- Free distribution between participants
-- Sequential timestamps
+## Personal Conversations (98%)
+- Random snippets from ongoing conversations
+- Context-dependent messages that feel incomplete
+- Natural language with typos and casual tone
+- 1-7 messages per conversation
 
-The implementation details and exact prompt engineering are maintained separately from version control. 
+## Business Messages (2%)
+- Realistic spam/promotional content
+- Based on actual business message patterns
+- Uses CAPS and urgent tone
+- Includes real-world company references
+
+## Implementation
+The prompt system is maintained in `src/prompts.js` and uses the OpenAI API to generate JSON-structured responses that are then rendered in an iMessage-style interface. 

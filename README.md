@@ -1,27 +1,42 @@
 # Lost Conversations
 
-A web application that simulates an iMessage interface displaying randomly generated message snippets. Built with Vite and OpenAI API.
+A web application that simulates an iMessage interface displaying randomly generated conversation snippets. Built with Vite and OpenAI API.
 
-## Technical Details
+## Overview
+Lost Conversations generates random chat snippets that feel like glimpses into ongoing conversations. Sometimes confusing, sometimes intriguing, these message fragments appear as if you're looking at someone else's chat history.
 
-- Uses OpenAI's GPT-3.5-turbo model to generate contextually ambiguous message sequences
-- Conversation generation prompt is environment-dependent and not version controlled
-- Messages can appear in iMessage blue or SMS green (30% chance)
-- Supports 1-7 messages per conversation
-- Click anywhere to generate new conversations
+## Features
+- iMessage-style interface with accurate iOS design
+- Random conversation generation (98% personal chats, 2% business messages)
+- Dynamic message bubbles (blue/green for sent messages)
+- Realistic business spam messages
+- Contextless conversations that feel like real chat snippets
+
+## Tech Stack
+- Vite
+- OpenAI API (GPT-3.5 Turbo)
+- Vanilla JavaScript
+- CSS3
+
+## Live Demo
+Visit [Lost Conversations](https://guilimasp.github.io/lost-conversations/)
 
 ## Setup
-
 1. Clone the repository
 2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 3. Create a `.env.local` file with your OpenAI API key:
-   ```bash
-   VITE_OPENAI_API_KEY=your_api_key_here
-   ```
-4. Run the development server:
-   ```bash
-   npm run dev
-   ```
+```bash
+VITE_OPENAI_API_KEY=your_api_key_here
+```
+4. Run development server:
+```bash
+npm run dev
+```
+
+## Build
+```bash
+npm run build
+```
